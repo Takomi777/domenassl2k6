@@ -10282,14 +10282,23 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+/* 🟢 RODZIC – sekcja hero */
+.hero-section {
+  position: relative; /* konieczne dla absolute strzałki */
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 🟢 STRZAŁKA SCROLL DOWN */
 .scroll-down {
   position: absolute;
   bottom: 40px;
   left: 50%;
-  transform: translateX(-50%) translateY(40px);
+  transform: translateX(-50%) translateY(0);
   width: 60px;
   height: 60px;
-  border: 2px solid rgba(255,255,255,0.7);
+  border: 2px solid #fff; /* biały kolor */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -10297,7 +10306,7 @@ a.text-dark:hover, a.text-dark:focus {
   text-decoration: none;
   cursor: pointer;
 
-  opacity: 0;
+  opacity: 1; /* domyślnie widoczna */
 
   animation: arrowEnter 1.2s ease-out forwards;
   animation-delay: 0.6s;
@@ -10305,11 +10314,12 @@ a.text-dark:hover, a.text-dark:focus {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* STRZAŁKA W ŚRODKU */
 .scroll-down span {
   width: 12px;
   height: 12px;
-  border-right: 3px solid #ff8c00;
-  border-bottom: 3px solid #ff8c00;
+  border-right: 3px solid #fff; /* biały kolor */
+  border-bottom: 3px solid #fff; /* biały kolor */
   transform: rotate(45deg);
 
   animation:
@@ -10342,6 +10352,16 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateX(-50%) translateY(0);
   }
 }
+@-webkit-keyframes arrowEnter {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
 
 /* 🎬 PŁYWANIE */
 @keyframes arrowMove {
@@ -10355,6 +10375,34 @@ a.text-dark:hover, a.text-dark:focus {
   100% {
     transform: rotate(45deg) translate(6px, 6px);
     opacity: 0;
+  }
+}
+@-webkit-keyframes arrowMove {
+  0% {
+    transform: rotate(45deg) translate(0, 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translate(6px, 6px);
+    opacity: 0;
+  }
+}
+
+/* 🎬 DOPASOWANIE NA TELEFONY */
+@media (max-width: 480px) {
+  .scroll-down {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+  }
+  .scroll-down span {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #fff; /* biały kolor */
+    border-bottom: 2px solid #fff; /* biały kolor */
   }
 }
 
