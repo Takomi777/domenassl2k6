@@ -10282,4 +10282,80 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+.scroll-down {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  opacity: 0;
+
+  animation: arrowEnter 1.2s ease-out forwards;
+  animation-delay: 0.6s;
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scroll-down span {
+  width: 12px;
+  height: 12px;
+  border-right: 3px solid #ff8c00;
+  border-bottom: 3px solid #ff8c00;
+  transform: rotate(45deg);
+
+  animation:
+    arrowMove 1.8s infinite,
+    arrowFadeIn 1.2s ease-out forwards;
+
+  animation-delay: 1.2s;
+  transition: border-color 0.3s ease;
+}
+
+/* 🔥 HOVER */
+.scroll-down:hover {
+  border-color: #fff;
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+.scroll-down:hover span {
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+}
+
+/* 🎬 WEJŚCIE STRZAŁKI */
+@keyframes arrowEnter {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 🎬 PŁYWANIE */
+@keyframes arrowMove {
+  0% {
+    transform: rotate(45deg) translate(0, 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translate(6px, 6px);
+    opacity: 0;
+  }
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
