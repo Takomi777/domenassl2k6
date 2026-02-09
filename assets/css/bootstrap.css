@@ -10282,44 +10282,68 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-/* 🟢 RODZIC – sekcja hero */
+/* 🌑 HERO SECTION */
 .hero-section {
-  position: relative; /* konieczne dla absolute strzałki */
+  position: relative; /* konieczne dla absolute */
   width: 100%;
   height: 100vh;
+  background: url('background.jpg') center/cover no-repeat; /* podmień na swoje tło */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   overflow: hidden;
 }
 
-/* 🟢 STRZAŁKA SCROLL DOWN */
+.hero-content {
+  text-align: center;
+  color: #fff;
+}
+
+.hero-content .highlight {
+  color: #ff8c00;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  color: #ff8c00;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+/* 🔽 STRZAŁKA SCROLL DOWN */
 .scroll-down {
   position: absolute;
-  bottom: 40px;
+  bottom: 10px; /* pod przyciskiem */
   left: 50%;
-  transform: translateX(-50%) translateY(0);
-  width: 60px;
-  height: 60px;
-  border: 2px solid #fff; /* biały kolor */
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
   cursor: pointer;
-
-  opacity: 1; /* domyślnie widoczna */
+  z-index: 10;
 
   animation: arrowEnter 1.2s ease-out forwards;
   animation-delay: 0.6s;
-
+  opacity: 1;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* STRZAŁKA W ŚRODKU */
 .scroll-down span {
-  width: 12px;
-  height: 12px;
-  border-right: 3px solid #fff; /* biały kolor */
-  border-bottom: 3px solid #fff; /* biały kolor */
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
   transform: rotate(45deg);
 
   animation:
@@ -10341,68 +10365,68 @@ a.text-dark:hover, a.text-dark:focus {
   border-bottom-color: #fff;
 }
 
-/* 🎬 WEJŚCIE STRZAŁKI */
+/* 🎬 ANIMACJE */
 @keyframes arrowEnter {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  from { opacity: 0; transform: translateX(-50%) translateY(40px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
+
 @-webkit-keyframes arrowEnter {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  from { opacity: 0; transform: translateX(-50%) translateY(40px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* 🎬 PŁYWANIE */
 @keyframes arrowMove {
-  0% {
-    transform: rotate(45deg) translate(0, 0);
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(45deg) translate(6px, 6px);
-    opacity: 0;
-  }
-}
-@-webkit-keyframes arrowMove {
-  0% {
-    transform: rotate(45deg) translate(0, 0);
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(45deg) translate(6px, 6px);
-    opacity: 0;
-  }
+  0% { transform: rotate(45deg) translate(0,0); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: rotate(45deg) translate(6px,6px); opacity: 0; }
 }
 
-/* 🎬 DOPASOWANIE NA TELEFONY */
+@-webkit-keyframes arrowMove {
+  0% { transform: rotate(45deg) translate(0,0); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: rotate(45deg) translate(6px,6px); opacity: 0; }
+}
+
+/* 📱 RESPONSYWNOŚĆ NA TELEFONY */
 @media (max-width: 480px) {
   .scroll-down {
     width: 50px;
     height: 50px;
-    bottom: 20px;
+    bottom: 5px; /* lekko niżej */
   }
   .scroll-down span {
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid #fff; /* biały kolor */
-    border-bottom: 2px solid #fff; /* biały kolor */
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+  }
+
+  .btn {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+}
+
+/* 💻 DUŻE EKRANY (np. Full HD) */
+@media (min-width: 1200px) {
+  .scroll-down {
+    width: 70px;
+    height: 70px;
+    bottom: 20px; /* trochę wyżej od dołu */
+    border-width: 3px;
+  }
+
+  .scroll-down span {
+    width: 15px;
+    height: 15px;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+  }
+  
+  .btn {
+    padding: 16px 40px;
+    font-size: 18px;
   }
 }
 
