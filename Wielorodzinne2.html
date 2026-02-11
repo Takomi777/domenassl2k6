@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mieszkalne</title>
+    <title>Wielorodzinne</title>
     <link rel="stylesheet" href="assets/css/themes3.css">
- <link rel="icon" type="image/x-icon" href="assets/img/kri sam domek z czerwonym punktem (1).png">
+    <link rel="icon" type="image/x-icon" href="assets/img/kri sam domek z czerwonym punktem (1).png">
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twoja Strona</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Opcjonalnie: własny CSS -->
@@ -44,10 +45,13 @@
             <a href="index.html#uslugi" class="nav-link">Oferta</a>
           </li>
            <li class="nav-item">
-            <a href="index.html#footer" class="nav-link">Kontakt</a>
-            <li class="nav-item">
-            <a href="biezacerealizacje.html" class="nav-link">Bieżące Realizacje</a>
+            <a href="index.html#portfolio2" class="nav-link">Realizacje</a>
           </li>
+           <li class="nav-item">
+            <a href="index.html#footer" class="nav-link">Kontakt</a>
+          </li>
+          <li class="nav-item">
+            <a href="biezacerealizacje.html" class="nav-link">Bieżące Realizacje</a>
           </li>
         </ul>
       </div>
@@ -70,6 +74,20 @@
   });
 </script>
 
+          <script>
+  const header = document.getElementById("header");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+</script>
+</body>
+</html>
+
         </div>
       </div> <!-- .container -->
     </nav> <!-- .navbar -->
@@ -82,12 +100,14 @@
 
 <div class="galeria">
   
-  <img src="assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250113095600.jpg" alt="Zdjęcie 1" onclick="pokazZdjecie(0)">
-  <img src="assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250113095554.jpg" alt="Zdjęcie 2" onclick="pokazZdjecie(1)">
-  <img src="assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250123141409.jpg" alt="Zdjęcie 3" onclick="pokazZdjecie(2)">
-  <img src="assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250205074707 - kopia.jpg" alt="Zdjęcie 4" onclick="pokazZdjecie(3)">
-  <img src="assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250210121455.jpg" alt="Zdjęcie 5" onclick="pokazZdjecie(4)">
-  <img src="assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250314073305.jpg" alt="Zdjęcie 6" onclick="pokazZdjecie(5)">
+  <img src="assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/1.jpg" alt="Zdjęcie 1" onclick="pokazZdjecie(0)">
+  <img src="assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/2.jpg" alt="Zdjęcie 2" onclick="pokazZdjecie(1)">
+  <img src="assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/33.jpg" alt="Zdjęcie 3" onclick="pokazZdjecie(2)">
+  <img src="assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/4.jpg" alt="Zdjęcie 4" onclick="pokazZdjecie(3)">
+  <img src="assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/5.jpg" alt="Zdjęcie 5" onclick="pokazZdjecie(4)">
+  <img src="assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/6.jpg" alt="Zdjęcie 6" onclick="pokazZdjecie(5)">
+  
+
 </div>
 
 <!-- Lightbox -->
@@ -99,13 +119,14 @@
 
 <script>
   const zdjecia = [
-   
-    "assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250113095600.jpg",
-    "assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250113095554.jpg",
-    "assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250123141409.jpg",
-    "assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250205074707 - kopia.jpg",
-    "assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250210121455.jpg",
-    "assets/img/realizacje/BUDYNEK MIESZKALNY/IMG20250314073305.jpg",
+    "assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/1.jpg",
+    "assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/2.jpg",
+    "assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/33.jpg",
+    "assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/4.jpg",
+    "assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/5.jpg",
+    "assets/img/realizacje/BUDOWNICTWO WIELORODZINNE/6.jpg",
+    
+
   ];
   let aktualnyIndex = 0;
 
@@ -134,6 +155,9 @@
   }
   
 </script>
+
+
+
 <script>
 document.addEventListener("keydown", function (e) {
   const lightbox = document.getElementById("lightbox");
