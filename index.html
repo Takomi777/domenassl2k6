@@ -1004,82 +1004,44 @@
         </div> <!-- .page-section -->
     </section>
 
+    <!-- Client Logos Section -->
+    <div class="page-section py-5">
+
+      <!-- <div class="container">
+        <h5 class="text-center wow fadeInUp">BUDUJEMY DLA</h5>
+
+        <div class="row row-col-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-lg-5 justify-content-center align-items-center text-center mt-4">
+          <div class="client-item py-3 wow fadeInUp">
+            <img src="assets/img/clients/BUDUJEMY DLA/1.png" alt="">
+          </div>
+          <div class="client-item py-3 wow fadeInUp">
+            <img src="assets/img/clients/BUDUJEMY DLA/2.png" alt="">
+          </div>
+          <div class="client-item py-3 wow fadeInUp">
+            <img src="assets/img/clients/BUDUJEMY DLA/3.png" alt="">
+          </div>
+          <div class="client-item py-3 wow fadeInUp">
+            <img src="assets/img/clients/BUDUJEMY DLA/4.png" alt="">
+          </div>
+          <div class="client-item py-3 wow fadeInUp">
+            <img src="assets/img/clients/BUDUJEMY DLA/5.png" alt="">
+          </div>
+        </div>
+      </div> .container -->
 <section class="page-section bg-light">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="title-section">Nasi Partnerzy</h2>
-      <div class="divider mx-auto"></div>
-    </div>
-
-    <div class="row justify-content-center g-4 partners-container">
-      
-      <div class="col-6 col-md-4 col-lg-4">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-4 d-none extra-partner">
-        <div class="client-card">
-          <img src="assets/img/clients/1.png" alt="Partner" class="client-img">
-        </div>
-      </div>
-
-    </div> <div class="text-center mt-5">
-      <button id="show-more-partners" class="btn-partners-more">Wyświetl więcej</button>
+  <div class="container-fluid">
+    <div class="subhead text-center">WSPÓŁPRACUJEMY Z</div>
+    
+    <div class="owl-carousel partners-slider mt-4">
+      <div class="item"><div class="client-card"><img src="assets/img/clients/1.png" class="logo-bar"></div></div>
+      <div class="item"><div class="client-card"><img src="assets/img/clients/2.png" class="logo-bar"></div></div>
+      <div class="item"><div class="client-card"><img src="assets/img/clients/5.png" class="logo-bar"></div></div>
+      <div class="item"><div class="client-card"><img src="assets/img/clients/183.png" class="logo-bar"></div></div>
+      <div class="item"><div class="client-card"><img src="assets/img/clients/budokop-logo.png" class="logo-bar"></div></div>
     </div>
   </div>
 </section>
+
 
   </main>
   <section id="footer">
@@ -1163,50 +1125,90 @@
   <!-- AOS Animation (async for faster load) -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" async></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.getElementById('show-more-partners');
-    
-    if (btn) {
-        btn.addEventListener('click', function() {
-            const extraPartners = document.querySelectorAll('.extra-partner');
-            
-            extraPartners.forEach((item, index) => {
-                // Usuwamy d-none i dodajemy klasę wymuszającą układ kart
-                item.classList.remove('d-none');
-                item.classList.add('show-flex');
-                
-                // Efekt stopniowego pojawiania się (jeden po drugim)
-                item.style.opacity = '0';
-                setTimeout(() => {
-                    item.style.transition = 'opacity 0.5s ease';
-                    item.style.opacity = '1';
-                }, index * 100); // Małe opóźnienie dla każdego kafelka
-            });
-
-            // Ukrywamy przycisk po kliknięciu
-            this.style.opacity = '0';
-            setTimeout(() => { this.style.display = 'none'; }, 300);
+// Używamy window.onload, aby mieć pewność, że biblioteki z 'defer' już działają
+window.addEventListener('load', function() {
+    if (typeof jQuery !== 'undefined' && $.fn.owlCarousel) {
+        $(".partners-slider").owlCarousel({
+            loop: true,
+            margin: 20,
+            autoplay: false, // Ręczne przesuwanie
+            mouseDrag: true, 
+            touchDrag: true,
+            dots: true,
+            responsive: {
+                0: { items: 1 },
+                768: { items: 2 },
+                1000: { items: 3 }
+            }
         });
+    } else {
+        console.error("Błąd: Biblioteka Owl Carousel nie została załadowana!");
     }
 });
 </script>
 </body>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Inicjalizacja Fancybox dla wszystkich elementów z data-fancybox
-    Fancybox.bind("[data-fancybox]", {
-      // Tutaj możesz dodać opcje, np. animacje
-      Carousel: {
-        infinite: true,
-      },
-    });
+document.addEventListener("keydown", function (e) {
+  const lightbox = document.getElementById("lightbox");
 
-    // Inicjalizacja AOS (Animacje)
-    AOS.init({
-      duration: 800,
-      once: true
-    });
-  });
+  if (lightbox.style.display !== "flex") return;
+
+  if (e.key === "ArrowRight") {
+    nextZdjecie(e);
+  }
+
+  if (e.key === "ArrowLeft") {
+    prevZdjecie(e);
+  }
+
+  if (e.key === "Escape") {
+    ukryjZdjecie();
+  }
+});
 </script>
+<script>
+let startX = 0;
+let endX = 0;
 
+const lightbox = document.getElementById("lightbox");
+
+lightbox.addEventListener("touchstart", function (e) {
+  startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend", function (e) {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const diff = startX - endX;
+
+  if (Math.abs(diff) < 50) return;
+
+  if (diff > 0) {
+    nextZdjecie(new Event("swipe"));
+  } else {
+    prevZdjecie(new Event("swipe"));
+  }
+}
+</script>
+<script>
+$(document).ready(function(){
+  // Inicjalizacja karuzeli partnerów
+  $(".partners-slider").owlCarousel({
+    loop: true,
+    margin: 20,
+    autoplay: false,     // Tylko ręczne przesuwanie
+    mouseDrag: true,     // Reaguje na myszkę
+    touchDrag: true,     // Reaguje na dotyk
+    dots: true,          // Kropki nawigacyjne
+    responsive: {
+      0: { items: 1 },
+      768: { items: 2 },
+      1000: { items: 3 }
+    }
+  });
+});
+</script>
 </html>

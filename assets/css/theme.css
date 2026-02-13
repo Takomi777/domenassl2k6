@@ -33,7 +33,27 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Default styling for larger screens */
+.logo-bar {
+  width: 20%;
+  /* This will take 5% of the container's width */
+}
 
+/* For tablets or medium screens */
+@media (max-width: 768px) {
+  .logo-bar {
+    width: 30%;
+    /* Adjust the width to 10% for medium screens */
+  }
+}
+
+/* For mobile or small screens */
+@media (max-width: 480px) {
+  .logo-bar {
+    width:50%;
+    /* Adjust the width to 20% for smaller screens */
+  }
+}
 
 
 h1,
@@ -1961,41 +1981,53 @@ p span {
 }
 
 
-.clients-section {
-  background: #000;
-  padding: 80px 0;
-}
-
-.clients-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.client-box {
-  height: 220px;
-  border: 1px solid #1a1a1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-}
-
-.client-box img {
-  max-width: 140px;
-  opacity: 0.6;
-  filter: grayscale(100%);
-  transition: 0.3s ease;
-}
-
-.client-box:hover img {
-  opacity: 1;
-  filter: grayscale(0%);
-  transform: scale(1.05);
-}
-.clients-grid > div {
+/* Carousel Wrapper */
+.client-carousel {
   width: 100%;
+  /* Adjust the width for a better visual focus */
+  margin: 0 auto;
+  /* Center the carousel */
+  overflow: hidden;
+  background: linear-gradient(90deg, #f5f5f5 0%, #ffffff 100%);
+  /* Subtle background gradient */
+  padding: 20px;
+  /* Adds space around the logos */
+  border-radius: 10px;
+  /* Rounds the corners for a modern look */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  /* Adds shadow for depth */
+}
+
+/* Additional Styles for Headings in Carousel */
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  /* Stack the heading and logos vertically */
+  align-items: center;
+  /* Center align items */
+  padding: 10px;
+  /* Add padding for better spacing */
+}
+
+.carousel-item h2 {
+  margin-bottom: 15px;
+  /* Space below the heading */
+  font-size: 24px;
+  /* Adjust the font size */
+  color: #333;
+  /* Change the color as needed */
+}
+
+
+/* Carousel Track */
+.client-carousel-track {
+  display: flex;
+  gap: 30px;
+  /* Adds space between logos */
+  align-items: center;
+  /* Ensures logos are vertically centered */
+  padding-left: 10px;
+  /* Adds small padding for cleaner look */
 }
 
 .loader-container {
@@ -2138,108 +2170,76 @@ p span {
 .owl-carousel button.owl-dot.active {
   background-color: #FF7000;
 }
-/* Gwarantujemy układ kafelkowy */
-.partners-container {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    flex-direction: row !important;
-    justify-content: center !important;
+.inostrzalka {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  animation: bounce 1.8s infinite;
+  transition: 0.3s ease;
+  z-index: 10;
 }
 
-.client-card {
-    background: #ffffff !important;
-    border: 1px solid #eee !important;
-    border-radius: 8px;
-    height: 120px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+.inostrzalka::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-left: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: rotate(-45deg);
+  margin-top: -5px;
 }
 
-/* Stylizacja kafelka - kwadratowy kształt */
-.client-card {
+.inostrzalka:hover {
+  background: white;
+}
+
+.inostrzalka:hover::after {
+  border-color: black;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 10px);
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+.hero-section {
+  position: relative;
+}
+.inostrzalka {
+  background: red !important;
+}
+/* Celujemy tylko w logotypy wewnątrz sekcji partnerów */
+.partners-slider .logo-bar {
+    width: auto !important;      /* Ignoruj szerokość 20% z nawigacji */
+    max-height: 100px !important; /* Ustaw rozsądną wysokość dla slidera */
+    max-width: 80% !important;
+    object-fit: contain !important;
+}
+
+/* Styl kafelka, w którym siedzi logo */
+.partners-slider .client-card {
     background: #ffffff;
     border: 1px solid #eaeaea;
     border-radius: 12px;
-    height: 250px; /* Wysokość zbliżona do szerokości kolumny */
+    height: 250px; /* Kwadratowy kształt kafelka */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px; /* Większy padding wewnętrzny odsuwa logo od krawędzi */
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    width: 100%;
+    margin: 10px;
 }
-
-.client-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-    border-color: #FF7000;
-}
-
-/* KONTROLA ROZMIARU LOGOTYPU - teraz mniejszy i zgrabniejszy */
-.client-img {
-    max-width: 70%; /* Logo zajmie max 70% szerokości kafelka */
-    max-height: 80px; /* Powrót do mniejszego rozmiaru, by nie dominowało */
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.6;
-    transition: all 0.3s ease;
-}
-
-.client-card:hover .client-img {
-    filter: grayscale(0%);
-    opacity: 1;
-}
-
-/* Gwarancja równego rzędu dla partners-container */
-.partners-container {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-}
-
-/* Obsługa przycisku i d-none */
-.extra-partner.d-none {
-    display: none !important;
-}
-
-/* Obsługa przycisku "Pokaż więcej" - wymuszenie ukrycia */
-.extra-partner.d-none {
-    display: none !important;
-}/* Stylizacja przycisku "Wyświetl więcej" */
-.btn-partners-more {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: #FF7000; /* Twój firmowy pomarańcz */
-    color: #ffffff !important;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 50px; /* Zaokrąglony kształt */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(255, 112, 0, 0.3);
-}
-
-.btn-partners-more:hover {
-    background-color: #e66500;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 112, 0, 0.4);
-}
-
-.btn-partners-more:active {
-    transform: translateY(0);
-}
-
-/* Fix dla ukrytych elementów, by pojawiały się jako Flex */
-.extra-partner.show-flex {
-    display: flex !important;
-}
+/*# sourceMappingURL=theme.css.map */

@@ -1,29 +1,3 @@
-// Carousel Auto Scroll
-const carouselTrack = document.querySelector('.client-carousel-track');
-let scrollAmount = 0;
-
-function autoScroll() {
-  scrollAmount += 2; // Increased scroll speed by adjusting increment
-  carouselTrack.style.transform = `translateX(-${scrollAmount}px)`;
-
-  if (scrollAmount >= carouselTrack.scrollWidth / 1.2) {
-    scrollAmount = 0; // Reset scrolling when reaching the end of the track
-  }
-
-  requestAnimationFrame(autoScroll); // Use requestAnimationFrame for smoother scrolling
-}
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-
-requestAnimationFrame(autoScroll); // Start auto scrolling
-
 
 // Smooth Scroll without jQuery
 document.querySelectorAll("a[data-role='smoothscroll']").forEach(anchor => {
