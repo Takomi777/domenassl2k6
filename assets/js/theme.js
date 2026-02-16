@@ -1,15 +1,105 @@
+// --- FUNKCJA DLA STRZAŁEK (MUSI BYĆ GLOBALNA) ---
+function manualScroll(id, distance) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollBy({ left: distance, behavior: 'smooth' });
+    if (typeof pauseTrack === 'function') pauseTrack(id);
+  }
+}
 
-// Smooth Scroll without jQuery
-document.querySelectorAll("a[data-role='smoothscroll']").forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const position = document.querySelector(this.getAttribute('href')).offsetTop - 70;
-    window.scrollTo({
-      top: position,
-      behavior: 'smooth'
-    });
+const trackStates = {};
+
+function pauseTrack(trackId) {
+  if (!trackStates[trackId]) return;
+  trackStates[trackId].isPaused = true;
+  clearTimeout(trackStates[trackId].resumeTimeout);
+  // Wznowienie po 3 sekundach bezczynności
+  trackStates[trackId].resumeTimeout = setTimeout(() => {
+    trackStates[trackId].isPaused = false;
+  }, 3000);
+}
+
+// Główna logika po załadowaniu DOM
+document.addEventListener('DOMContentLoaded', () => {
+  // --- 1. LOGIKA KARUZELI LOGOTYPÓW (PRZESUWANIE + DOTYK) ---
+  const setups = [
+    { id: 'track-1', speed: 0.5 }, // Górny (wolniejszy)
+    { id: 'track-2', speed: 1.2 }  // Dolny (szybszy)
+  ];
+
+  setups.forEach(setup => {
+    const slider = document.getElementById(setup.id);
+    if (!slider) return;
+    const container = slider.querySelector('.logo-scroll-container');
+    if (!container) return;
+
+    // Potrójne klonowanie dla płynnej pętli
+    container.innerHTML += container.innerHTML + container.innerHTML;
+
+    trackStates[setup.id] = {
+      isPaused: false,
+      resumeTimeout: null,
+      isDown: false,
+      startX: 0,
+      scrollLeft: 0
+    };
+
+    const state = trackStates[setup.id];
+
+    // Obsługa startu (Myszka / Dotyk)
+    const startAction = (e) => {
+      state.isDown = true;
+      state.isPaused = true;
+      clearTimeout(state.resumeTimeout);
+      state.startX = (e.pageX || e.touches[0].pageX) - slider.offsetLeft;
+      state.scrollLeft = slider.scrollLeft;
+    };
+
+    // Obsługa końca
+    const endAction = () => {
+      if (state.isDown) {
+        state.isDown = false;
+        pauseTrack(setup.id);
+      }
+    };
+
+    // Obsługa ruchu
+    const moveAction = (e) => {
+      if (!state.isDown) return;
+      // Zapobiegaj przewijaniu strony podczas przesuwania karuzeli na telefonie
+      if (e.type === 'touchmove') {
+        // e.preventDefault(); // Opcjonalne: odkomentuj, jeśli chcesz zablokować pionowy scroll podczas dotykania loga
+      }
+      const x = (e.pageX || (e.touches ? e.touches[0].pageX : 0)) - slider.offsetLeft;
+      const walk = (x - state.startX) * 1.5; // Czułość przesuwania
+      slider.scrollLeft = state.scrollLeft - walk;
+    };
+
+    slider.addEventListener('mousedown', startAction);
+    slider.addEventListener('touchstart', startAction, {passive: true});
+    
+    window.addEventListener('mouseup', endAction);
+    slider.addEventListener('touchend', endAction);
+    
+    slider.addEventListener('mousemove', moveAction);
+    slider.addEventListener('touchmove', moveAction, {passive: true});
+
+    // Pętla animacji
+    function step() {
+      if (!state.isPaused && !state.isDown) {
+        slider.scrollLeft += setup.speed;
+        // Resetowanie pętli (gdy dojdzie do 2/3 szerokości)
+        if (slider.scrollLeft >= (slider.scrollWidth / 3) * 2) {
+          slider.scrollLeft = slider.scrollWidth / 3;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   });
 });
+
+// Akcje po pełnym załadowaniu strony (w tym
 
 // Back to Top Button with Throttling
 const backTop = document.querySelector(".back-to-top");

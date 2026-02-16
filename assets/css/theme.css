@@ -110,7 +110,7 @@ a.bg-primary:focus {
   background-color: #FF8C00 !important;
 }
 .realizacje-btn {
-  margin-top: px;
+  margin-top: 150px;
   display: inline-block;
   font-family: 'Arial', sans-serif; /* Zmień, jeśli używasz innej czcionki */
   font-weight: bold;
@@ -2170,6 +2170,7 @@ p span {
 .owl-carousel button.owl-dot.active {
   background-color: #FF7000;
 }
+
 .inostrzalka {
   position: absolute;
   bottom: 40px;
@@ -2183,63 +2184,220 @@ p span {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  animation: bounce 1.8s infinite;
   transition: 0.3s ease;
   z-index: 10;
+
+  opacity: 0;
+  animation: fadeInArrow 1.2s ease forwards, bounce 1.8s infinite 1.2s;
 }
 
+
+/* STRZAŁKA */
 .inostrzalka::after {
   content: "";
-  width: 15px;
-  height: 15px;
-  border-left: 3px solid white;
+  width: 14px;
+  height: 14px;
+  border-right: 3px solid white;
   border-bottom: 3px solid white;
-  transform: rotate(-45deg);
-  margin-top: -5px;
+  transform: rotate(45deg);
+  margin-top: -6px;
 }
-
-.inostrzalka:hover {
-  background: white;
-}
-
-.inostrzalka:hover::after {
-  border-color: black;
-}
-
-@keyframes bounce {
-  0%, 100% {
+@keyframes fadeInArrow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  100% {
+    opacity: 1;
     transform: translate(-50%, 0);
   }
-  50% {
-    transform: translate(-50%, 10px);
-  }
-}
-html {
-  scroll-behavior: smooth;
-}
-.hero-section {
-  position: relative;
-}
-.inostrzalka {
-  background: red !important;
-}
-/* Celujemy tylko w logotypy wewnątrz sekcji partnerów */
-.partners-slider .logo-bar {
-    width: auto !important;      /* Ignoruj szerokość 20% z nawigacji */
-    max-height: 100px !important; /* Ustaw rozsądną wysokość dla slidera */
-    max-width: 80% !important;
-    object-fit: contain !important;
 }
 
-/* Styl kafelka, w którym siedzi logo */
-.partners-slider .client-card {
-    background: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 12px;
-    height: 250px; /* Kwadratowy kształt kafelka */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
+
+/* --- SEKCJA KARUZELI LOGOTYPÓW --- */
+
+/* Kontener zewnętrzny (trzyma paski i strzałki) */
+.carousel-outer-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 60px; /* Miejsce na strzałki po bokach */
+  margin-bottom: 40px;
 }
-/*# sourceMappingURL=theme.css.map */
+
+/* Okno, przez które widać logotypy */
+.logo-wrapper {
+  width: 100%;
+  overflow: hidden; /* Ukrywa resztę logotypów poza widokiem */
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.logo-wrapper:active {
+  cursor: grabbing;
+}
+
+/* Kontener trzymający logotypy w jednej linii */
+.logo-scroll-container {
+  display: flex;
+  align-items: center;
+  gap: 80px; /* Odstęp między logami */
+  width: max-content; /* Kluczowe: pozwala paskowi rosnąć w nieskończoność w prawo */
+}
+
+/* Styl dla obrazków wewnątrz pasków */
+.logo-scroll-container img {
+  display: block;
+  flex-shrink: 0; /* Zabrania przeglądarce ściskania obrazków */
+  width: auto;
+  pointer-events: none; /* Żeby kliknięcie w obrazek nie przerywało przesuwania paska */
+  -webkit-user-drag: none;
+}
+
+/* Różnicowanie wielkości dla dwóch pasków */
+#track-1 .logo-scroll-container img {
+  height: 80px; /* Duże loga na górze */
+}
+
+#track-2 .logo-scroll-container img {
+  height: 45px; /* Małe loga na dole */
+}
+
+/* STRZAŁKI NAWIGACYJNE */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #FF7000; /* Twój pomarańczowy kolor */
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+  background-color: #e66500;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow.left {
+  left: 5px;
+}
+
+.nav-arrow.right {
+  right: 5px;
+}
+
+/* RESPONSYWNOŚĆ (Dostosowanie do telefonów) */
+@media (max-width: 768px) {
+  .carousel-outer-wrapper {
+    padding: 0 45px;
+  }
+  
+  #track-1 .logo-scroll-container img {
+    height: 50px; /* Mniejsze na komórki */
+  }
+
+  #track-2 .logo-scroll-container img {
+    height: 30px; /* Mniejsze na komórki */
+  }
+
+  .logo-scroll-container {
+    gap: 40px; /* Mniejsze odstępy na komórki */
+  }
+
+  .nav-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+}
+
+/* Zapobieganie miganiu przy ładowaniu */
+.logo-wrapper img {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+/* Ukrywanie scrollbara, ale zachowanie funkcjonalności przewijania */
+.logo-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Pozwala na przewijanie */
+  overflow-y: hidden;
+  white-space: nowrap;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  cursor: grab;
+  position: relative;
+  scroll-behavior: smooth; /* Płynne przewijanie przy kliknięciu strzałek */
+}
+
+/* Ukrycie scrollbara dla Chrome, Safari, Opera */
+.logo-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.logo-wrapper:active {
+  cursor: grabbing;
+}
+
+/* Upewnij się, że obrazki mają marginesy */
+.logo-scroll-container img {
+  margin: 0 40px; /* Odstęp między logami */
+}
+/* theme.css - dodaj lub podmień to na końcu */
+
+.logo-wrapper {
+  overflow-x: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.logo-wrapper:active {
+  cursor: grabbing; /* Kursor zaciśniętej rączki przy kliknięciu */
+}
+
+/* Upewnij się, że obrazki nie są "przeciągalne" systemowo (duchy obrazków) */
+.logo-scroll-container img {
+  pointer-events: none; 
+  margin: 0 40px;
+}
+/* theme.css */
+
+.logo-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto; /* Zmieniamy na auto, by telefon obsłużył to naturalnie */
+  overflow-y: hidden;
+  white-space: nowrap;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch; /* Płynne przewijanie na iPhone/Safari */
+  scrollbar-width: none; /* Ukrywa pasek na Firefox */
+  touch-action: pan-x; /* Pozwala na przewijanie tylko w poziomie */
+  user-select: none;
+}
+
+/* Ukrycie paska przewijania dla Chrome/Safari */
+.logo-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.logo-wrapper:active {
+  cursor: grabbing;
+}
+
+/* Zapobieganie "wyciąganiu" obrazków podczas przeciągania */
+.logo-scroll-container img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
