@@ -2401,3 +2401,12 @@ p span {
   pointer-events: none;
   -webkit-user-drag: none;
 }
+.carousel-header {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: #2d2f38;
+  /* Trik na dodatkową grubość: */
+  -webkit-text-stroke: 0.5px #2d2f38; 
+  text-align: center;
+}
